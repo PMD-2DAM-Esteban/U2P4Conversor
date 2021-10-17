@@ -2,15 +2,21 @@ package dam.esteban.u2p4conversor;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
+
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import java.text.DecimalFormat;
+
+
 
 public class MainActivity extends LogActivity {
     //TODO: Formato
+
+
     DecimalFormat df = new DecimalFormat("#.00");
 
 
@@ -18,11 +24,13 @@ public class MainActivity extends LogActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setUI();
+        setUI(savedInstanceState);
+
+
     }
 
 //TODO: Funcion setUI
-    private void setUI(){
+    private void setUI(Bundle savedInstanceState){
 //Obtenemos todos los campos por sus ids
 
 
@@ -31,6 +39,15 @@ public class MainActivity extends LogActivity {
         Button button= findViewById(R.id.button);
         Button buttonPU= findViewById(R.id.buttonPU);
         TextView textoErrores= findViewById(R.id.textoErrores);
+
+
+
+        //Verificamos el save para ver si tiene datos guardados
+
+        if (savedInstanceState!=null){
+            textoErrores.setText(savedInstanceState.getString("error"));
+
+        }
 
         //Añadimos evento al boton para despues llamar a la funcion de convertir
         button.setOnClickListener(view -> {
@@ -57,6 +74,11 @@ public class MainActivity extends LogActivity {
 
         });
 
+
+
+
+
+
     }
 //TODO: Funcion convertir de cm a pulgadas
     private String convertirCMPU( String pulgada) throws Exception {
@@ -81,6 +103,21 @@ public class MainActivity extends LogActivity {
         df.format(cmValue);
         return String.valueOf(cmValue);
     }
+
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+
+        TextView textoErr=findViewById(R.id.textoErrores);
+
+        String textoErroresSave= textoErr.getText().toString();
+
+        savedInstanceState.putString("error", textoErroresSave);
+
+
+    }
+
 
 
 }
