@@ -98,9 +98,12 @@ public class MainActivity extends LogActivity {
             throw new Exception("Anañe un numero mayor a 0");
         }
 
+        DecimalFormat formato= new DecimalFormat();
+        formato.setMaximumFractionDigits(2);
+
 
         double cmValue=Double.parseDouble(cm)/2.54;
-        df.format(cmValue);
+        formato.format(cmValue);
         return String.valueOf(cmValue);
     }
 

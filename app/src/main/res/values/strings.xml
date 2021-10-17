@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">U2P4Conversor</string>
     <string name="textViewInfo">Conversor de pulgadas a centimetros</string>
-    <string name="textViewHintPedir">Introduce las pulgadas</string>
+    <string name="textViewHintPedir">Introduce los CM</string>
     <string name="buttonConvertir">Convertir CM</string>
     <string name="buttonConvertirPuCM">Convertir PU</string>
-    <string name="editTextHintResultado">Resultado</string>
+    <string name="editTextHintResultado">Introduce Pulgadas</string>
 </resources>
